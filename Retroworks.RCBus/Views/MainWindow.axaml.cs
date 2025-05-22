@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Retroworks.Views
+namespace Retroworks.RCBus.Views
 {
     public partial class MainWindow : Window
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace Retroworks
+namespace Retroworks.RCBus
 {
     internal sealed class Program
     {

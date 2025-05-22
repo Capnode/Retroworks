@@ -1,4 +1,4 @@
-﻿namespace Retroworks.ViewModels
+﻿namespace Retroworks.RCBus.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {

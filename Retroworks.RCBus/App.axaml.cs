@@ -4,10 +4,10 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using Retroworks.ViewModels;
-using Retroworks.Views;
+using Retroworks.RCBus.ViewModels;
+using Retroworks.RCBus.Views;
 
-namespace Retroworks
+namespace Retroworks.RCBus
 {
     public partial class App : Application
     {

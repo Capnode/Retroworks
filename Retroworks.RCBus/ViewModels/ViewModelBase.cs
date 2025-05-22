@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Retroworks.ViewModels
+namespace Retroworks.RCBus.ViewModels
 {
     public class ViewModelBase : ObservableObject
     {

@@ -7,12 +7,12 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="d2021943-683e-45a6-b36b-80b51e97e6a8"
+    Name="ae761afa-af62-472d-b10f-4117d9ae83a9"
     Publisher="CN=Capnode"
     Version="0.1.0.0" />
 
   <Properties>
-    <DisplayName>Retroworks.RCBus.Installer</DisplayName>
+    <DisplayName>Retroworks.RCBus.Windows</DisplayName>
     <PublisherDisplayName>carlc</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -31,8 +31,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Retroworks.RCBus.Installer"
-        Description="Retroworks.RCBus.Installer"
+        DisplayName="Retroworks.RCBus.Windows"
+        Description="Retroworks.RCBus.Windows"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">

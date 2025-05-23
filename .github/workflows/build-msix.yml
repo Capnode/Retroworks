@@ -1,0 +1,36 @@
+name: Build and Publish MSIX Installer
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-msix:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore NuGet packages
+        run: dotnet restore
+
+      - name: Build solution (Release)
+        run: dotnet build -c Release
+
+      # If you have a .wapproj or .msixproj, publish it to create the MSIX package
+      - name: Publish MSIX package
+        run: |
+          msbuild Retroworks.RCBus.Windows.wapproj /p:Configuration=Release /p:Platform=x64 /p:UapAppxPackageBuildMode=StoreUpload
+
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: msix-installer
+          path: '**/*.msix*'

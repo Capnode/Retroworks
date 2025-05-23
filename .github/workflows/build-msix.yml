@@ -22,12 +22,12 @@ jobs:
         run: dotnet restore
 
       - name: Build solution (Release)
-        run: dotnet build -c Release
+        run: dotnet build -c Release Retroworks.RCBus
 
       # If you have a .wapproj or .msixproj, publish it to create the MSIX package
       - name: Publish MSIX package
         run: |
-          msbuild Retroworks.RCBus.Windows.wapproj /p:Configuration=Release /p:Platform=x64 /p:UapAppxPackageBuildMode=StoreUpload
+          msbuild Retroworks.RCBus.Windows\Retroworks.RCBus.Windows.wapproj /p:Configuration=Release /p:Platform=x64 /p:UapAppxPackageBuildMode=StoreUpload
 
       - name: Upload MSIX artifact
         uses: actions/upload-artifact@v4

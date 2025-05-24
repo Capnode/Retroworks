@@ -36,7 +36,7 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: .NET Core Desktop
+name: Build and Publish MSIX Installer
 
 on:
   push:
@@ -57,7 +57,6 @@ jobs:
 
     env:
       Solution_Name: Retroworks.sln # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: Retroworks.Components\Retroworks.Components.Tests.csproj # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
       Wap_Project_Directory: Retroworks.RCBus.Windows # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       Wap_Project_Path: Retroworks.RCBus.Windows\Retroworks.RCBus.Windows.wapproj # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
@@ -77,9 +76,12 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
+    - name: Restore NuGet packages
+      run: dotnet restore
+        
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test
+      run: dotnet test Retroworks.Components.Tests\Retroworks.Components.Tests.csproj
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application

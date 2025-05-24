@@ -1,9 +1,8 @@
 ﻿using Konamiman.Z80dotNet;
-using System.Diagnostics;
-using Retroworks.RCBus.Devices.Components;
-using static Retroworks.RCBus.Devices.IEmulatorDevice;
+using Retroworks.Components;
 using System;
 using System.Threading;
+using static Retroworks.Components.IEmulatorDevice;
 
 namespace Retroworks.RCBus.Devices;
 

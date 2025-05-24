@@ -16,6 +16,7 @@ using Avalonia.Media;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Avalonia.Styling;
+using Retroworks.Components;
 
 [assembly: XmlnsDefinition("https://github.com/avaloniaui", "Retroworks.RCBus.Controls")]
 

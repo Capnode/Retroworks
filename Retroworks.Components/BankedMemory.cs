@@ -1,9 +1,6 @@
 ﻿using Konamiman.Z80dotNet;
-using System;
-using System.Diagnostics;
-using System.Linq;
 
-namespace Retroworks.RCBus.Devices.Components;
+namespace Retroworks.Components;
 
 /// <summary>
 /// Represents a banked memory implementation in which all the addresses are mapped in banks.
@@ -104,7 +101,7 @@ public class BankedMemory : IMemory
         return _memory.Skip(address).Take(length).ToArray();
     }
 
-    internal void WritePort(ushort port, byte value)
+    public void WritePort(ushort port, byte value)
     {
         switch (port - _base)
         {

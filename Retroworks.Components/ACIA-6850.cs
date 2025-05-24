@@ -1,9 +1,6 @@
 ﻿using Konamiman.Z80dotNet;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 
-namespace Retroworks.RCBus.Devices.Components;
+namespace Retroworks.Components;
 
 /// <summary>
 /// This module is the emulator for a serial I/O interface based on the 
@@ -92,7 +89,7 @@ namespace Retroworks.RCBus.Devices.Components;
 /// kACIAMsk2: .EQU  0b00001110    ;Mask for known bits in control reg
 /// kACIATst2: .EQU  0b00000010    ;Test value following masking
 /// </summary>
-internal class ACIA_6850 : IZ80InterruptSource
+public class ACIA_6850 : IZ80InterruptSource
 {
     public event EventHandler? NmiInterruptPulse;
 
@@ -117,7 +114,7 @@ internal class ACIA_6850 : IZ80InterruptSource
 
     public byte? ValueOnDataBus { get; private set; }
 
-    internal byte? ReadPort(ushort port)
+    public byte? ReadPort(ushort port)
     {
         byte value;
         switch (port - _base)
@@ -152,7 +149,7 @@ internal class ACIA_6850 : IZ80InterruptSource
 
     }
 
-    internal void WritePort(ushort port, byte value)
+    public void WritePort(ushort port, byte value)
     {
         switch (port - _base)
         {
@@ -177,7 +174,7 @@ internal class ACIA_6850 : IZ80InterruptSource
         //Debug.WriteLine($"ACIA write {port:X2} <- {value:X2}");
     }
 
-    internal void RxData(byte value)
+    public void RxData(byte value)
     {
         _rxData.Enqueue(value);
         _statusRegister |= 0x01; // Receive data register full

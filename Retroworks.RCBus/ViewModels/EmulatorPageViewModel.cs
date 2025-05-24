@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Retroworks.RCBus.Services.Internals;
 using System.IO;
-using Retroworks.RCBus.Devices;
 using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
 using VtNetCore.VirtualTerminal;
@@ -15,6 +14,7 @@ using Avalonia.Styling;
 using VtNetCore.VirtualTerminal.Enums;
 using VtNetCore.VirtualTerminal.Model;
 using Avalonia;
+using Retroworks.Components;
 
 namespace Retroworks.RCBus.ViewModels;
 

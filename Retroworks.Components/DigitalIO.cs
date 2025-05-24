@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace Retroworks.RCBus.Devices.Components;
+﻿namespace Retroworks.Components;
 
 public class DigitalIO
 {
@@ -17,7 +14,7 @@ public class DigitalIO
 
     public byte InData { get; set; } = 0xff; // Default value for unhandled ports
 
-    internal byte? ReadPort(ushort port)
+    public byte? ReadPort(ushort port)
     {
         byte value;
         switch (port - _base)
@@ -33,7 +30,7 @@ public class DigitalIO
         return value;
     }
 
-    internal void WritePort(ushort port, byte value)
+    public void WritePort(ushort port, byte value)
     {
         switch (port - _base)
         {

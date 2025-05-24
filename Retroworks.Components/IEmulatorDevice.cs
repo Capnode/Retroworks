@@ -1,8 +1,7 @@
 ﻿using Konamiman.Z80dotNet;
-using System.Threading;
-using Retroworks.RCBus.Devices.Components;
 
-namespace Retroworks.RCBus.Devices;
+namespace Retroworks.Components;
+
 public interface IEmulatorDevice
 {
     delegate void TxData(byte data);

@@ -42,6 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Retroworks.Components\Retroworks.Components.csproj" />
 		<ProjectReference Include="..\VtNetCore\VtNetCore\VtNetCore.csproj" />
 		<ProjectReference Include="..\Z80dotNet\Main\Main.csproj" />
 	</ItemGroup>

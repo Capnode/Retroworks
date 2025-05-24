@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VtNetCoreUnitTests", "VtNet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZexallTest", "Z80dotNet\ZexallTest\ZexallTest.csproj", "{8C7644BB-8B81-03B8-FFCF-3A29E9E2810C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retroworks.Components", "Retroworks.Components\Retroworks.Components.csproj", "{D0FF88E0-9E00-1CDD-4637-608D242D81CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,26 @@ Global
 		{8C7644BB-8B81-03B8-FFCF-3A29E9E2810C}.Release|x64.Build.0 = Release|Any CPU
 		{8C7644BB-8B81-03B8-FFCF-3A29E9E2810C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8C7644BB-8B81-03B8-FFCF-3A29E9E2810C}.Release|x86.Build.0 = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|ARM.Build.0 = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|ARM64.Build.0 = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|x64.Build.0 = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0FF88E0-9E00-1CDD-4637-608D242D81CE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

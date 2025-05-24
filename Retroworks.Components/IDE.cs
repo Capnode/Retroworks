@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Retroworks.RCBus.Devices.Components;
+namespace Retroworks.Components;
 
-internal class IDE
+public class IDE
 {
     // IDE register offsets (primary channel)
     // | Offset | Register Name        | Direction | Description                        |

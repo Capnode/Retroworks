@@ -1,14 +1,13 @@
 ﻿using Konamiman.Z80dotNet;
-using System;
 
-namespace Retroworks.RCBus.Devices.Components;
+namespace Retroworks.Components;
 
 /// <summary>
 /// Represents a trivial memory implementation in which all the addresses are RAM 
 /// and the values written are simply read back. This is the default implementation
 /// of <see cref="IMemory"/>.
 /// </summary>
-internal class PortMemory : IMemory
+public class PortMemory : IMemory
 {
     public delegate byte ReadPort(ushort port);
     public delegate void WritePort(ushort port, byte value);

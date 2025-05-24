@@ -1,0 +1,78 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Retroworks.RCBus.Controls"
+    xmlns:converters="clr-namespace:Retroworks.RCBus.Converters"
+    x:ClassModifier="public">
+    <!--
+        Additional resources
+        Using Control Themes:
+        https://docs.avaloniaui.net/docs/basics/user-interface/styling/control-themes
+        Using Theme Variants:
+        https://docs.avaloniaui.net/docs/guides/styles-and-resources/how-to-use-theme-variants
+    -->
+
+    <Design.PreviewWith>
+        <StackPanel Width="100" Spacing="10">
+            <controls:LedControl IsOn="True" Color="Green" />
+            <controls:LedControl IsOn="False" Color="Red" />
+            <controls:LedControl IsOn="True" Color="Blue" />
+            <controls:LedControl IsOn="True" Color="Lime" />
+            <controls:LedControl IsOn="True" Color="Gray" />
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type controls:LedControl}" TargetType="controls:LedControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Canvas Width="40" Height="40">
+                    <Ellipse
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="40"
+                        Height="40"
+                        Stroke="Gray"
+                        StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush SpreadMethod="Pad" StartPoint="50%,100%" EndPoint="100%,0%">
+                                <GradientStop Offset="0.0" Color="#FF071923" />
+                                <GradientStop Offset="1.0" Color="White" />
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--Ellipse
+						Canvas.Left="5"
+						Canvas.Top="5"
+						Width="30"
+						Height="30"
+						Stroke="Gray"
+						StrokeThickness="1">
+						<Ellipse.Fill>
+							<LinearGradientBrush SpreadMethod="Pad" StartPoint="100%,50%" EndPoint="0%,100%">
+								<GradientStop Offset="0.0" Color="#FF071923" />
+								<GradientStop Offset="1.0" Color="White" />
+							</LinearGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse-->
+                    <Ellipse
+                        Canvas.Left="5"
+                        Canvas.Top="5"
+                        Width="30"
+                        Height="30"
+                        Fill="Gray"
+                        Stroke="Gray"
+                        StrokeThickness="1" />
+                    <Ellipse
+                        Canvas.Left="5"
+                        Canvas.Top="5"
+                        Width="30"
+                        Height="30"
+                        Fill="{TemplateBinding Color}"
+                        IsVisible="{TemplateBinding IsOn}"
+                        Stroke="Gray"
+                        StrokeThickness="1" />
+                </Canvas>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="Retroworks.RCBus.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Retroworks.RCBus.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:Retroworks.RCBus.Views"
+    xmlns:vm="clr-namespace:Retroworks.RCBus.ViewModels"
+    d:DesignHeight="300"
+    x:DataType="vm:MainViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.Column="0"
+            Padding="10"
+            Background="{DynamicResource SystemAltMediumHighColor}">
+            <Grid RowDefinitions="*, Auto">
+                <StackPanel Spacing="12">
+                    <Button
+                        Classes="transparent subtle"
+                        Classes.active="{Binding SerialPageIsActive}"
+                        Command="{Binding GoToSerialCommand}"
+                        ToolTip.Tip="Serial port">
+                        <Label
+                            Classes="icon-only"
+                            Content="&#xeb56;"
+                            FontFamily="{DynamicResource Phosphor}"
+                            FontSize="32" />
+                    </Button>
+                    <Button
+                        Classes="transparent subtle"
+                        Classes.active="{Binding EmulatorPageIsActive}"
+                        Command="{Binding GoToEmulatorCommand}"
+                        ToolTip.Tip="RCBus Emulator">
+                        <Image
+                            Width="38"
+                            Height="38"
+                            Classes="icon-only"
+                            Source="{SvgImage /Assets/rcbus.svg}" />
+                    </Button>
+                </StackPanel>
+
+                <Button
+                    Grid.Row="1"
+                    Classes="transparent subtle"
+                    Classes.active="{Binding SettingsPageIsActive}"
+                    Command="{Binding GoToSettingsCommand}"
+                    ToolTip.Tip="Settings">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xe270;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="32" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <Panel Grid.Column="1" IsVisible="{Binding SerialPageIsActive}">
+            <view:SerialPageView />
+        </Panel>
+
+        <Panel Grid.Column="1" IsVisible="{Binding EmulatorPageIsActive}">
+            <view:EmulatorPageView />
+        </Panel>
+
+        <Panel Grid.Column="1" IsVisible="{Binding SettingsPageIsActive}">
+            <view:SettingsPageView />
+        </Panel>
+
+        <Grid
+            Name="DialogOverlay"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            IsVisible="{Binding #DialogOverlay.Opacity}"
+            Opacity="{Binding Dialog.IsDialogOpen, FallbackValue=0}">
+
+            <Grid.Styles>
+                <Style Selector="Grid">
+                    <Setter Property="Transitions">
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                        </Transitions>
+                    </Setter>
+                </Style>
+            </Grid.Styles>
+
+            <ContentControl
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="{Binding Dialog}" />
+        </Grid>
+    </Grid>
+
+</UserControl>

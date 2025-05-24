@@ -1,0 +1,101 @@
+﻿<UserControl
+    x:Class="Retroworks.RCBus.Views.SettingsPageView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Retroworks.RCBus.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Retroworks.RCBus.Models"
+    xmlns:vm="clr-namespace:Retroworks.RCBus.ViewModels"
+    d:DesignHeight="900"
+    d:DesignWidth="300"
+    x:DataType="vm:SettingsPageViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:SettingsPageViewModel />
+    </Design.DataContext>
+
+    <TabControl>
+        <TabItem Header="Settings" IsSelected="True">
+            <Grid ColumnDefinitions="100, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Command="{Binding ResetCommand}"
+                    ToolTip.Tip="Reset settings">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xe07e;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="24" />
+                </Button>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Theme" />
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding Themes}"
+                    PlaceholderText="Select Theme"
+                    SelectedValue="{Binding ActualTheme}" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="About">
+            <Grid ColumnDefinitions="100, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Content="Title" />
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Title}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Content="Version" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding Version}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="Author" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Author}" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Content="Copyright" />
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding Copyright}" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Content="Description" />
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="{Binding Description}"
+                    TextWrapping="Wrap" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Content="Credits" />
+                <ListBox Grid.Row="5" Grid.Column="1">
+                    <ListBoxItem Content="Retro icons created by Darius Dan - Flaticon.com" />
+                </ListBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

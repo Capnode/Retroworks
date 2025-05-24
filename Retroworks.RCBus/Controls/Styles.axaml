@@ -1,0 +1,45 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Design.PreviewWith>
+		<!-- Add Controls for Previewer Here -->
+		<Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}" Width="600">
+			<Grid ColumnDefinitions="*,*">
+				<StackPanel Spacing="15">
+					<Button Content="Normal" />
+					<Button Classes="small" Content="Small" />
+					<Button Classes="smaller" Content="Smaller" />
+					<Button Classes="active" Content="Subtle" />
+					<Button Classes="outline" Content="Outline" />
+					<Button Classes="alert" Content="Alert" />
+					<Button Classes="outline alert" Content="Alert" />
+					<Button Classes="danger" Content="Danger" />
+					<Button Classes="outline danger" Content="Danger" />
+					<Button Classes="success" Content="Success" />
+					<Button Classes="outline success" Content="Success" />
+
+					<Button>
+						<Label Classes="icon-only" Content="&#xe272;"></Label>
+					</Button>
+
+					<Button Classes="transparent">
+						<Label Classes="icon-only" Content="&#xe272;"></Label>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+	</Design.PreviewWith>
+
+	<!-- Active button -->
+    <Style Selector=":is(Button).active /template/ ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource AccentButtonForeground}" />
+    </Style>
+    <Style Selector=":is(Button).active">
+		<Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource AccentButtonForeground}" />
+    </Style>
+    
+</Styles>

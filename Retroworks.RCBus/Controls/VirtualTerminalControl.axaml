@@ -1,0 +1,25 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:controls="clr-namespace:Retroworks.RCBus.Controls">
+    <Style Selector="controls|VirtualTerminalControl">
+        <Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLightBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}" />
+        <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Cursor" Value="IBeam" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="*, Auto">
+                    <Panel Name="Panel" />
+                    <ScrollBar
+                        Name="ScrollBar"
+                        Grid.Column="1"
+                        AllowAutoHide="False"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        Visibility="Visible" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

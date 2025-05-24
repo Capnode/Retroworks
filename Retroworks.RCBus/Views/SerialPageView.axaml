@@ -1,0 +1,176 @@
+﻿<UserControl
+    x:Class="Retroworks.RCBus.Views.SerialPageView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Retroworks.RCBus.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Retroworks.RCBus.ViewModels"
+    d:DesignHeight="600"
+    d:DesignWidth="360"
+    x:DataType="vm:SerialPageViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:SerialPageViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding PanelWidth, Mode=TwoWay, Converter={StaticResource GridLengthConverter}}" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid Margin="8"
+                ColumnDefinitions="100, *"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Classes="transparent"
+                    Classes.active="{Binding IsPower}"
+                    Command="{Binding PowerCommand}"
+                    ToolTip.Tip="Power">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xE3DA;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="32"
+                        Foreground="Red" />
+                </Button>
+                <ComboBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding SerialPorts}"
+                    PlaceholderText="Select port"
+                    SelectedValue="{Binding SerialPort}">
+                    <i:Interaction.Behaviors>
+                        <ia:EventTriggerBehavior EventName="DropDownOpened">
+                            <ia:InvokeCommandAction Command="{Binding UpdateSerialPortsCommand}" />
+                        </ia:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Speed" />
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding BaudRates}"
+                    PlaceholderText="Select port speed"
+                    SelectedValue="{Binding SerialSpeed}" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Data bit" />
+                <ComboBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding DataBits}"
+                    PlaceholderText="Select data bits"
+                    SelectedValue="{Binding SerialBit}" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Parity" />
+                <ComboBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding ParityTypes}"
+                    PlaceholderText="Select parity"
+                    SelectedValue="{Binding SerialParity}" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Stop bits" />
+                <ComboBox
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding StopBits}"
+                    PlaceholderText="Select stop bits"
+                    SelectedValue="{Binding SerialStopBit}" />
+
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Content="Flow control" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding FlowControlTypes}"
+                    PlaceholderText="Select flow control"
+                    SelectedValue="{Binding SerialHandshake}" />
+
+				<Label
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+					ToolTip.Tip="Transmit character delay (ms/char)"
+                    Content="Tx char delay" />
+				<TextBox
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    Text="{Binding TxCharDelay}" />
+
+				<Label
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+					ToolTip.Tip="Transmit line delay (ms/line)"
+                    Content="Tx line delay" />
+				<TextBox
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Margin="2"
+                    HorizontalAlignment="Stretch"
+                    Text="{Binding TxLineDelay}" />
+			</Grid>
+        </Grid>
+
+        <GridSplitter
+            Grid.Column="1"
+            IsEnabled="{Binding PanelExpanded}"
+            ResizeDirection="Columns" />
+
+        <controls:VirtualTerminalControl
+            Grid.Column="2"
+            Connection="{Binding Connection}"
+            FontFamily="{StaticResource CascadiaCode}"
+            FontSize="20"
+            Terminal="{Binding Terminal}" />
+        </Grid>
+</UserControl>

@@ -1,0 +1,206 @@
+﻿<UserControl
+    x:Class="Retroworks.RCBus.Views.EmulatorPageView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Retroworks.RCBus.Controls"
+    xmlns:converters="clr-namespace:Retroworks.RCBus.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Retroworks.RCBus.ViewModels"
+    d:DesignHeight="600"
+    d:DesignWidth="400"
+    x:DataType="vm:EmulatorPageViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:EmulatorPageViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding PanelWidth, Mode=TwoWay, Converter={StaticResource GridLengthConverter}}" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid
+                Margin="8"
+                ColumnDefinitions="60, *"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Classes="transparent"
+                    Classes.active="{Binding IsPower}"
+                    Command="{Binding PowerCommand}"
+                    ToolTip.Tip="Power">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xE3DA;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="32"
+                        Foreground="Red" />
+                </Button>
+                <ComboBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="4"
+                    HorizontalAlignment="Stretch"
+                    IsEnabled="{Binding !IsPower}"
+                    ItemsSource="{Binding Devices}"
+                    PlaceholderText="Select device"
+                    SelectedValue="{Binding Device}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Classes="transparent"
+                    Command="{Binding GetProgramFileCommand}"
+                    CommandParameter="{Binding $self}"
+                    IsEnabled="{Binding !IsPower}"
+                    ToolTip.Tip="Select program file">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xE1FE;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="32" />
+                </Button>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Stretch"
+                    Content="{Binding ProgramFile}"
+                    FontSize="12"
+                    ToolTip.Tip="{Binding ProgramPath}" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Classes="transparent"
+                    Command="{Binding GetCfFileCommand}"
+                    CommandParameter="{Binding $self}"
+                    IsEnabled="{Binding !IsPower}"
+                    ToolTip.Tip="Select Compact Flash file">
+                    <Label
+                        Classes="icon-only"
+                        Content="&#xE1FE;"
+                        FontFamily="{DynamicResource Phosphor}"
+                        FontSize="32" />
+                </Button>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Stretch"
+                    Content="{Binding CfFile}"
+                    FontSize="12"
+                    ToolTip.Tip="{Binding CfPath}" />
+
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal"
+                    Spacing="1">
+                    <controls:LedControl IsOn="{Binding OutPort8}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort7}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort6}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort5}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort4}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort3}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort2}" Color="Lime" />
+                    <controls:LedControl IsOn="{Binding OutPort1}" Color="Lime" />
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal"
+                    Spacing="1">
+                    <controls:LedControl IsOn="{Binding InPort8}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort7}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort6}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort5}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort4}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort3}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort2}" Color="Red" />
+                    <controls:LedControl IsOn="{Binding InPort1}" Color="Red" />
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="10,0"
+                    Orientation="Horizontal"
+                    Spacing="9">
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort8}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort7}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort6}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort5}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort4}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort3}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort2}"
+                        OffContent=""
+                        OnContent="" />
+                    <VerticalSwitch
+                        Command="{Binding InPortCommand}"
+                        IsChecked="{Binding InPort1}"
+                        OffContent=""
+                        OnContent="" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <GridSplitter
+            Grid.Column="1"
+            IsEnabled="{Binding PanelExpanded}"
+            ResizeDirection="Columns" />
+
+        <controls:VirtualTerminalControl
+            Grid.Column="2"
+            Connection="{Binding Connection}"
+            FontFamily="{StaticResource CascadiaCode}"
+            FontSize="20"
+            Terminal="{Binding Terminal}" />
+    </Grid>
+</UserControl>

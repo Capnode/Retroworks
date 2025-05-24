@@ -1,0 +1,89 @@
+﻿<UserControl
+    x:Class="Retroworks.RCBus.Views.ConfirmDialogView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Retroworks.RCBus.ViewModels"
+    Width="{Binding DialogWidth}"
+    Height="{Binding DialogHeight}"
+    MinWidth="300"
+    x:DataType="vm:ConfirmDialogViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:ConfirmDialogViewModel />
+    </Design.DataContext>
+
+    <!--  Main Dialog Window  -->
+    <Border
+        Margin="10"
+        ClipToBounds="True"
+        CornerRadius="20">
+
+
+        <Grid RowDefinitions="Auto, *">
+
+            <!--  Title  -->
+            <Border Grid.Row="0" CornerRadius="20 20 0 0">
+                <TextBlock
+                    Padding="10"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="{Binding Title}" />
+            </Border>
+
+            <Grid
+                Grid.Row="1"
+                Margin="20"
+                RowDefinitions="Auto, Auto, *, Auto">
+
+                <!--  Description  -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Label Classes="icon" Content="{Binding IconText}" />
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="0,10"
+                    Text="{Binding StatusText}"
+                    TextAlignment="Right"
+                    TextWrapping="Wrap" />
+
+                <!--  Buttons  -->
+                <StackPanel
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    IsVisible="{Binding !Busy}"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        MinWidth="70"
+                        HorizontalContentAlignment="Center"
+                        Classes="danger outline"
+                        Command="{Binding CancelCommand}"
+                        Content="{Binding CancelText}" />
+                    <Button
+                        MinWidth="70"
+                        HorizontalContentAlignment="Center"
+                        Classes="success"
+                        Command="{Binding ConfirmCommand}"
+                        Content="{Binding ConfirmText}" />
+                </StackPanel>
+
+                <TextBlock
+                    Grid.Row="3"
+                    Margin="0,10"
+                    IsVisible="{Binding Busy}"
+                    Text="{Binding ProgressText}"
+                    TextAlignment="Right"
+                    TextWrapping="Wrap" />
+
+            </Grid>
+
+        </Grid>
+    </Border>
+
+</UserControl>

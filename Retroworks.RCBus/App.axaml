@@ -1,10 +1,97 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Retroworks.RCBus.App"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-  
+<!--
+    Fluent Theme Editor: https://theme.xaml.live
+-->
+<Application
+    x:Class="Retroworks.RCBus.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Retroworks.RCBus"
+    xmlns:vc="clr-namespace:Retroworks.RCBus.Converters"
+    RequestedThemeVariant="Default">
+    <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
+
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources
+                    x:Key="Light"
+                    Accent="#ffffb900"
+                    AltHigh="White"
+                    AltLow="White"
+                    AltMedium="#a0a0a0"
+                    AltMediumHigh="#898989"
+                    AltMediumLow="#b6b6b6"
+                    BaseHigh="Black"
+                    BaseLow="#ffa0a0a0"
+                    BaseMedium="#ff898989"
+                    BaseMediumHigh="#ff5d5d5d"
+                    BaseMediumLow="#ff737373"
+                    ChromeAltLow="#ff5d5d5d"
+                    ChromeBlackHigh="Black"
+                    ChromeBlackLow="#ffcccccc"
+                    ChromeBlackMedium="#ff5d5d5d"
+                    ChromeBlackMediumLow="#ff898989"
+                    ChromeDisabledHigh="#ffcccccc"
+                    ChromeDisabledLow="#ff898989"
+                    ChromeGray="#ff737373"
+                    ChromeHigh="#ffcccccc"
+                    ChromeLow="#ffececec"
+                    ChromeMedium="#ffe6e6e6"
+                    ChromeMediumLow="#ffececec"
+                    ChromeWhite="White"
+                    ListLow="#ffe6e6e6"
+                    ListMedium="#ffcccccc"
+                    RegionColor="White" />
+                <ColorPaletteResources
+                    x:Key="Dark"
+                    Accent="DarkOrange"
+                    AltHigh="Black"
+                    AltLow="Black"
+                    AltMedium="#676767"
+                    AltMediumHigh="#808080"
+                    AltMediumLow="#4d4d4d"
+                    BaseHigh="White"
+                    BaseLow="#ff4d4d4d"
+                    BaseMedium="#ff9a9a9a"
+                    BaseMediumHigh="#ffb4b4b4"
+                    BaseMediumLow="#ff808080"
+                    ChromeAltLow="#ffb4b4b4"
+                    ChromeBlackHigh="Black"
+                    ChromeBlackLow="#ffb4b4b4"
+                    ChromeBlackMedium="Black"
+                    ChromeBlackMediumLow="Black"
+                    ChromeDisabledHigh="#ff333333"
+                    ChromeDisabledLow="#ff9a9a9a"
+                    ChromeGray="Gray"
+                    ChromeHigh="Gray"
+                    ChromeLow="#ff151515"
+                    ChromeMedium="#ff1d1d1d"
+                    ChromeMediumLow="#ff2c2c2c"
+                    ChromeWhite="White"
+                    ListLow="#ff1d1d1d"
+                    ListMedium="#ff333333"
+                    RegionColor="#ff202020" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+
+        <!--<SimpleTheme/>-->
+        <StyleInclude Source="Controls/VirtualTerminalControl.axaml" />
+        <StyleInclude Source="Controls/Styles.axaml" />
     </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Controls/LedControl.axaml" />
+                <ResourceInclude Source="/Controls/VerticalSwitch.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <vc:BooleanToBoldFontConverter x:Key="BooleanToBoldFontConverter" />
+            <vc:GridLengthConverter x:Key="GridLengthConverter" />
+        </ResourceDictionary>
+
+        <FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
+        <FontFamily x:Key="PhosphorFill">/Assets/Fonts/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
+        <FontFamily x:Key="CascadiaCode">/Assets/Fonts#Cascadia Code</FontFamily>
+    </Application.Resources>
 </Application>

@@ -11,7 +11,8 @@
 		<Company>Capnode AB</Company>
 		<Copyright>© 2025</Copyright>
 		<Description>RCBus toolkit with VT100 terminal for emulator and serial port.</Description>
-		<Platforms>AnyCPU;x64</Platforms>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+		<RuntimeIdentifiers>win-86;win-x64</RuntimeIdentifiers>
 	</PropertyGroup>
 
 	<ItemGroup>

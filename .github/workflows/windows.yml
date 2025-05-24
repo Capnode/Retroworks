@@ -76,9 +76,6 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    - name: Restore NuGet packages
-      run: dotnet restore
-        
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test Retroworks.Components.Tests\Retroworks.Components.Tests.csproj

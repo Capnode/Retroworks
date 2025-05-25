@@ -37,6 +37,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retroworks.Components", "Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retroworks.Components.Tests", "Retroworks.Components.Tests\Retroworks.Components.Tests.csproj", "{0E5F8B9C-5550-DEC2-D847-7A347B465B62}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{1C23991B-37A1-4260-8F9D-E859E75931F6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-msix.yml = .github\workflows\build-msix.yml
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+		.github\workflows\windows.yml = .github\workflows\windows.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

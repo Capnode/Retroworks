@@ -25,7 +25,7 @@
 #
 # Open the output file, SigningCertificate_Encoded.txt, and copy the
 # string inside. Then, add the string to the repo as a GitHub secret
-# and name it "Base64_Encoded_Pfx."
+# and name it "Base64_Encoded_Pfx".
 # For more information on how to configure your signing certificate for
 # this workflow, refer to https://github.com/microsoft/github-actions-for-desktop-apps#signing
 #
@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on

@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <RootNamespace>Konamiman.Z80dotNet</RootNamespace>
-    <AssemblyName>Konamiman.Z80dotNet</AssemblyName>
-    <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9</TargetFramework>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+		<RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Konamiman.Z80dotNet</RootNamespace>
+		<AssemblyName>Konamiman.Z80dotNet</AssemblyName>
+	</PropertyGroup>
 </Project>

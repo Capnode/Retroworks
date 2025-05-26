@@ -36,7 +36,7 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: Build and Publish Retroworks.RCBus.Windows MSIX Installer
+name: Build and Publish MSIX Installer
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug]
+        configuration: [Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -110,5 +110,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Retroworks.RCBus.Windows
+        name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages

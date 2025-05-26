@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{1C
 		.github\workflows\build-msix.yml = .github\workflows\build-msix.yml
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
-		.github\workflows\windows.yml = .github\workflows\windows.yml
+		.github\workflows\RCBus.windows.yml = .github\workflows\RCBus.windows.yml
 	EndProjectSection
 EndProject
 Global

@@ -37,6 +37,7 @@ internal class EmulatorConnection : IConnection
         IsConnected = true;
         _device = device ?? throw new ArgumentNullException(nameof(device));
         _cancel = new CancellationTokenSource();
+//        throw new NotImplementedException("This method is not implemented yet. Please use the overload with filename and cfPath.");
         Task.Run(() =>
         {
             device.Initialize(ReceiveData, cfPath);

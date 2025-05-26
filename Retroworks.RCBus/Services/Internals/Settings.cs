@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace Retroworks.RCBus.Services;
@@ -9,7 +11,24 @@ internal class Settings : ISettings
 
     public Settings()
     {
-        _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        string configDir = Path.Combine(appData, "Retroworks.RCBus");
+        Directory.CreateDirectory(configDir);
+
+        string configPath = Path.Combine(configDir, "user.config");
+
+        // If config file doesn't exist, copy from default
+        if (!File.Exists(configPath))
+        {
+            string exeConfigPath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".config";
+            if (File.Exists(exeConfigPath))
+            {
+                File.Copy(exeConfigPath, configPath, overwrite: false);
+            }
+        }
+
+        var configFileMap = new ExeConfigurationFileMap { ExeConfigFilename = configPath };
+        _config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
     }
 
     public double SerialPanelWidth

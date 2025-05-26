@@ -41,8 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{1C
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build-msix.yml = .github\workflows\build-msix.yml
 		LICENSE.txt = LICENSE.txt
-		.github\workflows\RCBus.windows.yml = .github\workflows\RCBus.windows.yml
 		README.md = README.md
+		.github\workflows\Retroworks.RCBus.windows.yml = .github\workflows\Retroworks.RCBus.windows.yml
 	EndProjectSection
 EndProject
 Global

@@ -11,11 +11,7 @@ internal class Settings : ISettings
 
     public Settings()
     {
-        string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        string configDir = Path.Combine(appData, "Retroworks.RCBus");
-        Directory.CreateDirectory(configDir);
-
-        string configPath = Path.Combine(configDir, "user.config");
+        string configPath = "user.config";
 
         // If config file doesn't exist, copy from default
         if (!File.Exists(configPath))

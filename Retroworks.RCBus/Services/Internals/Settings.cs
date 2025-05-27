@@ -31,28 +31,6 @@ internal class Settings : ISettings
         _config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
     }
 
-    public double SerialPanelWidth
-    {
-        get => double.TryParse(ConfigurationManager.AppSettings[Key()], out var value) ? value : 360;
-        set => SetAppSetting(Key(), value.ToString());
-    }
-
-    public double EmulatorPanelWidth
-    {
-        get => double.TryParse(ConfigurationManager.AppSettings[Key()], out var value) ? value : 360;
-        set => SetAppSetting(Key(), value.ToString());
-    }
-
-    private static string Key([CallerMemberName] string? propertyName = null)
-    {
-        return $"{propertyName}";
-    }
-
-    public string? GetString(string key)
-    {
-        return ConfigurationManager.AppSettings[key];
-    }
-
     public void Reset()
     {
         var settings = _config.AppSettings.Settings;
@@ -61,12 +39,13 @@ internal class Settings : ISettings
         ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
     }
 
-    public void SetString(string key, string value)
+    public string? GetString(string key)
     {
-        SetAppSetting(key, value);
+        var settings = _config.AppSettings.Settings;
+        return settings[key]?.Value;
     }
 
-    private void SetAppSetting(string key, string value)
+    public void SetString(string key, string value)
     {
         var settings = _config.AppSettings.Settings;
         if (settings[key] == null)
@@ -80,5 +59,22 @@ internal class Settings : ISettings
 
         _config.Save(ConfigurationSaveMode.Modified);
         ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
+    }
+
+    public double SerialPanelWidth
+    {
+        get => double.TryParse(GetString(Key()), out var value) ? value : 360;
+        set => SetString(Key(), value.ToString());
+    }
+
+    public double EmulatorPanelWidth
+    {
+        get => double.TryParse(GetString(Key()), out var value) ? value : 360;
+        set => SetString(Key(), value.ToString());
+    }
+
+    private static string Key([CallerMemberName] string? propertyName = null)
+    {
+        return $"{propertyName}";
     }
 }

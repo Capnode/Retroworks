@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Retroworks.RCBus.Views"
     xmlns:vm="using:Retroworks.RCBus.ViewModels"
-    Title="Retroworks.RCBus"
+    Title="Retroworks RCBus"
     d:DesignHeight="300"
     Icon="/Assets/retro.ico"
     mc:Ignorable="d">

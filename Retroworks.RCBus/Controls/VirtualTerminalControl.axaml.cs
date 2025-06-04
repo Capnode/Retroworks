@@ -7,7 +7,9 @@ using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.ReactiveUI;
+using Avalonia.Styling;
 using Avalonia.Threading;
+using Retroworks.RCBus.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,9 +18,9 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VtNetCore.VirtualTerminal;
+using VtNetCore.VirtualTerminal.Enums;
 using VtNetCore.VirtualTerminal.Model;
 using VtNetCore.XTermParser;
-using Retroworks.RCBus.Services;
 
 namespace Retroworks.RCBus.Controls
 {
@@ -611,6 +613,11 @@ namespace Retroworks.RCBus.Controls
         {
             if (spans == null)
             {
+                // Clear the background if there are no spans
+                var terminalBackground = Application.Current?.ActualThemeVariant == ThemeVariant.Light ? ETerminalColor.White : ETerminalColor.Black;
+                var background = new TerminalColor(terminalBackground, false).WebColor;
+                var backgroundColor = GetSolidColorBrush(background);
+                context.FillRectangle(backgroundColor, new Rect(0, 0, _panel.Bounds.Width, _panel.Bounds.Height));
                 return;
             }
 

@@ -1,22 +1,19 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Metadata;
+using Avalonia.Styling;
+using Microsoft.Extensions.DependencyInjection;
+using Retroworks.Components;
+using Retroworks.RCBus.Devices;
 using Retroworks.RCBus.Services;
+using Retroworks.RCBus.Services.Internals;
 using Retroworks.RCBus.ViewModels;
 using Retroworks.RCBus.Views;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using Retroworks.RCBus.Services.Internals;
-using Avalonia.Data.Core.Plugins;
-using Retroworks.RCBus.Devices;
 using System.Linq;
-using Avalonia.Controls;
-using Avalonia.Media;
-using System.Threading.Tasks;
-using ReactiveUI;
-using Avalonia.Styling;
-using Retroworks.Components;
 
 [assembly: XmlnsDefinition("https://github.com/avaloniaui", "Retroworks.RCBus.Controls")]
 
@@ -33,10 +30,6 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        // Register global exception handlers
-        AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
-
         // Line below is needed to remove Avalonia data validation.
         // Without this line you will get duplicate validations from both Avalonia and CT
         BindingPlugins.DataValidators.RemoveAt(0);
@@ -67,10 +60,20 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow
+
+            // If there are command line arguments, assume crash report
+            var args = desktop.Args;
+            if (args != null && args.Length >= 4)
             {
-                DataContext = Services.GetRequiredService<MainViewModel>()
-            };
+                desktop.MainWindow = ExceptionDialog(args[0], args[1], args[2], args[3]);
+            }
+            else
+            {
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = Services.GetRequiredService<MainViewModel>()
+                };
+            }
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
@@ -113,54 +116,49 @@ public partial class App : Application
         }
     }
 
-    private async void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    private Window ExceptionDialog(string title, string type, string message, string stack)
     {
-        // Log the exception or handle it as needed
-        await ShowExceptionDialog(e.ExceptionObject as Exception);
-
-        // Note: The application will still terminate if the exception is critical.
-        // You cannot fully suppress termination for certain exceptions (e.g., OutOfMemoryException).
-    }
-
-    private async void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
-    {
-        e.SetObserved(); // Prevent the process from terminating
-        await ShowExceptionDialog(e.Exception);
-    }
-
-    private async Task ShowExceptionDialog(Exception? exception)
-    {
-        if (exception == null) return;
-
         var dialog = new Window
         {
-            Title = "Unhandled Exception",
-            Width = 400,
-            Height = 200,
+            Title = title,
+            Width = 640,
+            Height = 480,
         };
+
+        var button = new Button
+        {
+            Content = "OK",
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+            Margin = new Thickness(10),
+        };
+        button.Click += (s, e) => dialog.Close();
+
         dialog.Content = new StackPanel
         {
             Children =
             {
                 new TextBlock
                 {
-                    Text = $"An unhandled exception occurred:\n{exception.Message}",
+                    Text = type,
                     TextWrapping = TextWrapping.Wrap,
                     Margin = new Thickness(10)
                 },
-                new Button
+                new TextBlock
                 {
-                    Content = "OK",
-                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                    Margin = new Thickness(10),
-                    Command = ReactiveCommand.Create(() => dialog.Close())
-                }
+                    Text = message,
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(10)
+                },
+                new TextBlock
+                {
+                    Text = stack,
+                    TextWrapping = TextWrapping.Wrap,
+                    Margin = new Thickness(10)
+                },
+                button
             }
         };
 
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && desktop.MainWindow != null)
-        {
-            await dialog.ShowDialog(desktop.MainWindow); // Block until the dialog is closed
-        }
+        return dialog;
     }
 }

@@ -2,6 +2,8 @@
 using Avalonia;
 using Serilog;
 using System.IO;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Retroworks.RCBus
 {
@@ -28,6 +30,9 @@ namespace Retroworks.RCBus
             Log.Information("Program starting...");
             Log.Information($"Working directory: {cwd}");
 
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) => ReportException("Non-UI exception", (Exception)e.ExceptionObject);
+            TaskScheduler.UnobservedTaskException += (sender, e) => ReportException("Task exception", e.Exception);
+            
             try
             {
                 BuildAvaloniaApp()
@@ -35,8 +40,7 @@ namespace Retroworks.RCBus
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Application start-up failed");
-                throw;
+                ReportException("Unhandled exception", ex);
             }
             finally
             {
@@ -49,5 +53,12 @@ namespace Retroworks.RCBus
                 .UsePlatformDetect()
                 .WithInterFont()
                 .LogToTrace();
+
+        private static void ReportException(string cause, Exception ex)
+        {
+            Log.Fatal(ex, cause);
+            string[] args = new string[] { cause, ex.GetType().ToString(), ex.Message, ex?.StackTrace ?? string.Empty};
+            Process.Start(typeof(Program).Assembly.Location.Replace(".dll", ".exe"), args);
+        }
     }
 }

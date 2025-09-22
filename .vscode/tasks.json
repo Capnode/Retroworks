@@ -3,9 +3,12 @@
 	"tasks": [
 		{
 			"label": "build",
-			"type": "dotnet",
-			"task": "build",
-			"args": ["${workspaceFolder}/Retroworks.RCBus/Retroworks.RCBus.csproj"],
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"${workspaceFolder}/Retroworks.RCBus/Retroworks.RCBus.csproj"
+			], 
 			"group": {
 				"kind": "build",
 				"isDefault": true

@@ -50,7 +50,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding SerialPorts}"
                     PlaceholderText="Select port"
-                    SelectedValue="{Binding SerialPort}">
+                    SelectedItem="{Binding SerialPort}">
                     <i:Interaction.Behaviors>
                         <ia:EventTriggerBehavior EventName="DropDownOpened">
                             <ia:InvokeCommandAction Command="{Binding UpdateSerialPortsCommand}" />
@@ -71,7 +71,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding BaudRates}"
                     PlaceholderText="Select port speed"
-                    SelectedValue="{Binding SerialSpeed}" />
+                    SelectedItem="{Binding SerialSpeed}" />
 
                 <Label
                     Grid.Row="2"
@@ -86,7 +86,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding DataBits}"
                     PlaceholderText="Select data bits"
-                    SelectedValue="{Binding SerialBit}" />
+                    SelectedItem="{Binding SerialBit}" />
 
                 <Label
                     Grid.Row="3"
@@ -101,7 +101,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding ParityTypes}"
                     PlaceholderText="Select parity"
-                    SelectedValue="{Binding SerialParity}" />
+                    SelectedItem="{Binding SerialParity}" />
 
                 <Label
                     Grid.Row="4"
@@ -116,7 +116,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding StopBits}"
                     PlaceholderText="Select stop bits"
-                    SelectedValue="{Binding SerialStopBit}" />
+                    SelectedItem="{Binding SerialStopBit}" />
 
                 <Label
                     Grid.Row="5"
@@ -131,7 +131,7 @@
                     IsEnabled="{Binding !IsPower}"
                     ItemsSource="{Binding FlowControlTypes}"
                     PlaceholderText="Select flow control"
-                    SelectedValue="{Binding SerialHandshake}" />
+                    SelectedItem="{Binding SerialHandshake}" />
 
 				<Label
                     Grid.Row="6"

@@ -42,7 +42,7 @@
                     HorizontalAlignment="Stretch"
                     ItemsSource="{Binding Themes}"
                     PlaceholderText="Select Theme"
-                    SelectedValue="{Binding ActualTheme}" />
+                    SelectedItem="{Binding ActualTheme}" />
             </Grid>
         </TabItem>
         <TabItem Header="About">

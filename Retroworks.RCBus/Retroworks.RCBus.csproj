@@ -15,6 +15,10 @@
 		<Description>RCBus toolkit with VT100 terminal for emulator and serial port.</Description>
 	</PropertyGroup>
 
+	<PropertyGroup>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    </PropertyGroup>
+
 	<ItemGroup>
 		<AvaloniaResource Include="Assets\**" />
 	</ItemGroup>

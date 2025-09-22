@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "dotnet",
+			"task": "build",
+			"args": ["${workspaceFolder}/Retroworks.RCBus/Retroworks.RCBus.csproj"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile"
+		}
+	]
+}

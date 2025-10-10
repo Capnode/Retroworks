@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>Retroworks RCBus</string>
+    <key>CFBundleExecutable</key>
+    <string>Retroworks.RCBus</string>
+    <key>CFBundleIconFile</key>
+    <string>icon.png</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.capnode.retroworks.rcbus</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Retroworks RCBus</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>0.1.0</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>© 2025 Capnode AB</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.developer-tools</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Retroworks RCBus needs access to Apple Events for automation features.</string>
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>Retroworks RCBus may need to access the Desktop folder for saving files.</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>Retroworks RCBus may need to access the Documents folder for saving files.</string>
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>Retroworks RCBus may need to access the Downloads folder for loading files.</string>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeDescription</key>
+            <string>Binary File</string>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>bin</string>
+                <string>hex</string>
+                <string>rom</string>
+            </array>
+            <key>CFBundleTypeName</key>
+            <string>Binary File</string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>LSTypeIsPackage</key>
+            <false/>
+        </dict>
+    </array>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.data</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>ROM Binary File</string>
+            <key>UTTypeIdentifier</key>
+            <string>com.capnode.retroworks.rom</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>rom</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

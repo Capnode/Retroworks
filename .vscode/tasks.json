@@ -8,12 +8,16 @@
 			"args": [
 				"build",
 				"${workspaceFolder}/Retroworks.RCBus/Retroworks.RCBus.csproj"
-			], 
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"reveal": "silent",
+				"panel": "shared"
+			}
 		},
 		{
 			"label": "build-dmg-arm64",
